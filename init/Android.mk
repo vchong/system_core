@@ -91,3 +91,17 @@ LOCAL_POST_INSTALL_CMD := $(hide) mkdir -p $(TARGET_ROOT_OUT)/sbin; \
 
 LOCAL_SANITIZE := signed-integer-overflow
 include $(BUILD_EXECUTABLE)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE_TAGS := debug
+LOCAL_MODULE := bootchart_parse
+LOCAL_SRC_FILES := \
+    bootchart_parse.cpp \
+
+LOCAL_SHARED_LIBRARIES += \
+    libbase \
+
+LOCAL_SANITIZE := integer
+LOCAL_CLANG := true
+LOCAL_CFLAGS += -Wno-unused-parameter
+include $(BUILD_EXECUTABLE)
