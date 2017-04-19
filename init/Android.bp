@@ -360,3 +360,17 @@ cc_binary {
         },
     },
 }
+
+cc_binary {
+    name: "bootchart_parse",
+    cflags: [
+        "-Wno-unused-parameter",
+    ],
+    shared_libs: [
+        "libbase",
+    ],
+    srcs: [
+        "bootchart_parse.cpp",
+    ],
+    vendor: true,
+}
