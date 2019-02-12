@@ -752,7 +752,7 @@ service console /system/bin/sh
     console
     disabled
     user shell
-    group shell log readproc
+    group shell log readproc inet
     seclabel u:r:shell:s0
     setenv HOSTNAME console
 
