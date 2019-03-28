@@ -1009,12 +1009,16 @@ static Result<Success> ExecWithRebootOnFailure(const std::string& reboot_reason,
 }
 
 static Result<Success> do_installkey(const BuiltinArguments& args) {
-    if (!is_file_crypto()) return Success();
+    if (!is_file_crypto()) {
+	LOG(INFO) << "###### is_file_crypto() FALSE ######";
+	return Success();
+    }
 
     auto unencrypted_dir = args[1] + e4crypt_unencrypted_folder;
     if (!make_dir(unencrypted_dir, 0700) && errno != EEXIST) {
         return ErrnoError() << "Failed to create " << unencrypted_dir;
     }
+    LOG(INFO) << "###### is_file_crypto() TRUE ######";
     return ExecWithRebootOnFailure(
         "enablefilecrypto_failed",
         {{"exec", "/system/bin/vdc", "--wait", "cryptfs", "enablefilecrypto"}, args.context});
