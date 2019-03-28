@@ -1,0 +1,80 @@
+> java -jar ../../../bfg-1.13.0.jar --strip-blobs-bigger-than 100M 
+
+Using repo : /home/victor.chong/work/swg/aosp/wv/system/core/.git
+
+Scanning packfile for large blobs: 146247
+Scanning packfile for large blobs completed in 997 ms.
+Found 1 blob ids for large blobs - biggest=229696508 smallest=229696508
+Total size (unpacked)=229696508
+Found 1653 objects to protect
+Found 754 tag-pointing refs : refs/remotes/m/android-9.0.0_r30, refs/remotes/m/android-9.0.0_r33, refs/remotes/m/android-9.0.0_r34, ...
+Found 447 commit-pointing refs : HEAD, refs/heads/vold, refs/remotes/aosp/brillo-m10-dev, ...
+
+Protected commits
+-----------------
+
+These are your protected commits, and so their contents will NOT be altered:
+
+ * commit 29081036 (protected by 'HEAD')
+
+Cleaning
+--------
+
+Found 47671 commits
+Cleaning commits:       100% (47671/47671)
+Cleaning commits completed in 3,608 ms.
+
+Updating 126 Refs
+-----------------
+
+	Ref                                                     Before     After   
+	---------------------------------------------------------------------------
+	refs/heads/vold                                       | 29081036 | 9edc1bc2
+	refs/remotes/aosp/master                              | ee3cce8b | 4b5efbd6
+	refs/remotes/aosp/master-cuttlefish-testing-release   | fd088948 | 9c55624d
+	refs/remotes/aosp/nougat-iot-release                  | 044e0276 | 52cd619d
+	refs/remotes/aosp/o-mr1-iot-preview-7                 | 2b49abe4 | 8ff6ed0b
+	refs/remotes/aosp/o-mr1-iot-preview-8                 | 22dc27b9 | 219cb8c9
+	refs/remotes/aosp/oreo-mr1-1.2-iot-release            | c53a0e91 | 8e1c9575
+	refs/remotes/aosp/oreo-mr1-iot-release                | 9a00f596 | d2d3227a
+	refs/remotes/aosp/pie-cts-dev                         | 2ef5c2ef | 1be06911
+	refs/remotes/aosp/pie-cts-release                     | bfe37429 | 0710a778
+	refs/remotes/aosp/pie-cuttlefish-testing              | 6884fed9 | 412aa865
+	refs/remotes/aosp/pie-dev                             | 4400b7c0 | 42dedd63
+	refs/remotes/aosp/pie-dr1-dev                         | 93d837f3 | bfe27d17
+	refs/remotes/aosp/pie-dr1-release                     | 47e38865 | 92fcac25
+	refs/remotes/aosp/pie-gsi                             | 030b669b | c3741687
+	...
+
+Updating references:    100% (126/126)
+...Ref update completed in 152 ms.
+
+Commit Tree-Dirt History
+------------------------
+
+	Earliest                                              Latest
+	|                                                          |
+	...................................................DDmmmmmmm
+
+	D = dirty commits (file tree fixed)
+	m = modified commits (commit message or parents changed)
+	. = clean commits (no changes to file tree)
+
+	                        Before     After   
+	-------------------------------------------
+	First modified commit | 150db124 | ecbcdafc
+	Last dirty commit     | e242a97d | cd89e6b1
+
+Deleted files
+-------------
+
+	Filename     Git id             
+	--------------------------------
+	libartd.so | 70352dbb (219.1 MB)
+
+
+In total, 7232 object ids were changed. Full details are logged here:
+
+	/home/victor.chong/work/swg/aosp/wv/system/core.bfg-report/2019-03-28/18-00-29
+
+BFG run is complete! When ready, run: git reflog expire --expire=now --all && git gc --prune=now --aggressive
