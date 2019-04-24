@@ -341,6 +341,17 @@ on post-fs
     # We restorecon /cache in case the cache partition has been reset.
     restorecon_recursive /cache
 
+    # We chown/chmod /data again so because mount is run as root + defaults
+    chown system system /data
+    chmod 0771 /data
+    # We restorecon /data in case the userdata partition has been reset.
+    restorecon /data
+
+    mkdir /data/vendor 0771 root root
+    mkdir /data/vendor_ce 0771 root root
+    mkdir /data/vendor_de 0771 root root
+    mkdir /data/vendor/hardware 0771 root root
+
     # Create /cache/recovery in case it's not there. It'll also fix the odd
     # permissions if created by the recovery system.
     mkdir /cache/recovery 0770 system cache
@@ -383,12 +394,6 @@ on late-fs
     class_start early_hal
 
 on post-fs-data
-    # We chown/chmod /data again so because mount is run as root + defaults
-    chown system system /data
-    chmod 0771 /data
-    # We restorecon /data in case the userdata partition has been reset.
-    restorecon /data
-
     # Make sure we have the device encryption key.
     start vold
     installkey /data
@@ -463,11 +468,6 @@ on post-fs-data
     mkdir /data/misc/profiles/ref 0771 system system
     mkdir /data/misc/profman 0770 system shell
     mkdir /data/misc/gcov 0770 root root
-
-    mkdir /data/vendor 0771 root root
-    mkdir /data/vendor_ce 0771 root root
-    mkdir /data/vendor_de 0771 root root
-    mkdir /data/vendor/hardware 0771 root root
 
     # For security reasons, /data/local/tmp should always be empty.
     # Do not place files or directories in /data/local/tmp
