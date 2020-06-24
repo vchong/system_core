@@ -761,6 +761,13 @@ static int __mount(const std::string& source, const std::string& target, const F
         unlink(target.c_str());
     }
     mkdir(target.c_str(), 0755);
+	PINFO << "#######################################";
+	PINFO << "###### after mkdir";
+	PINFO << "###### target.c_str()" << target.c_str();
+	PINFO << "###### target" << target;
+	PINFO << "###### source.c_str()" << source.c_str();
+	PINFO << "###### source" << source;
+	PINFO << "#######################################";
     errno = 0;
     unsigned long mountflags = entry.flags;
     int ret = 0;
@@ -777,9 +784,19 @@ static int __mount(const std::string& source, const std::string& target, const F
     const char* target_missing = "";
     const char* source_missing = "";
     if (save_errno == ENOENT) {
+		PINFO << "#######################################";
+		PINFO << "save_errno == ENOENT";
+		PINFO << "#######################################";
         if (access(target.c_str(), F_OK)) {
             target_missing = "(missing)";
-        } else if (access(source.c_str(), F_OK)) {
+			PINFO << "#######################################";
+			PINFO << "target missing";
+			PINFO << "#######################################";
+        }
+	if (access(source.c_str(), F_OK)) {
+			PINFO << "#######################################";
+			PINFO << "target missing";
+			PINFO << "#######################################";
             source_missing = "(missing)";
         }
         errno = save_errno;
