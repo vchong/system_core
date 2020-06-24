@@ -449,8 +449,12 @@ static bool HandleControlMessage(std::string_view message, const std::string& na
         return false;
     }
 
-    LOG(INFO) << "Control message: Processed ctl." << message << " for '" << name
+    static uint32_t cnt = 0;
+    if (cnt % 1000 == 0) {
+        LOG(INFO) << "Control message: Processed ctl." << message << " for '" << name
               << "' from pid: " << from_pid << " (" << process_cmdline << ")";
+    }
+    cnt++;
     return true;
 }
 
