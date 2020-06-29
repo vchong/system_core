@@ -187,11 +187,21 @@ void Service::NotifyStateChange(const std::string& new_state) const {
     }
 }
 
+#include <stdio.h>
+#include <string.h>
+
 void Service::KillProcessGroup(int signal, bool report_oneshot) {
     // If we've already seen a successful result from killProcessGroup*(), then we have removed
     // the cgroup already and calling these functions a second time will simply result in an error.
     // This is true regardless of which signal was sent.
     // These functions handle their own logging, so no additional logging is needed.
+
+    if (std::strstr(name_.c_str(),"tee-supplicant")) {
+	static int i=0;
+	LOG(INFO) << "KillProcessGroup tee-supplicant: " << i++;
+	LOG(INFO) << "process_cgroup_empty_ = " << process_cgroup_empty_;
+    }
+
     if (!process_cgroup_empty_) {
         LOG(INFO) << "Sending signal " << signal << " to service '" << name_ << "' (pid " << pid_
                   << ") process group...";
