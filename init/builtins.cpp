@@ -1186,8 +1186,12 @@ static Result<void> do_remount_userdata(const BuiltinArguments& args) {
 }
 
 static Result<void> do_installkey(const BuiltinArguments& args) {
-    if (!is_file_crypto()) return {};
+    if (!is_file_crypto()) {
+	    LOG(INFO) << "###### is_file_crypto() FALSE ######";
+	    return {};
+    }
 
+    LOG(INFO) << "###### is_file_crypto() TRUE ######";
     auto unencrypted_dir = args[1] + fscrypt_unencrypted_folder;
     if (!make_dir(unencrypted_dir, 0700) && errno != EEXIST) {
         return ErrnoError() << "Failed to create " << unencrypted_dir;
