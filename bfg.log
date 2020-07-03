@@ -1,0 +1,93 @@
+$ java -jar ~/Downloads/pgm/bfg-1.13.0.jar --strip-blobs-bigger-than 100M
+
+Using repo : /path/to/platform/system/core/.git
+
+
+This repo has been processed by The BFG before! Will prune repo before proceeding - to avoid unnecessary cleaning work on unused objects...
+Completed prune of old objects - will now proceed with the main job!
+
+Scanning packfile for large blobs: 374751
+Scanning packfile for large blobs completed in 4,690 ms.
+Found 1 blob ids for large blobs - biggest=229696508 smallest=229696508
+Total size (unpacked)=229696508
+Found 2030 objects to protect
+Found 947 tag-pointing refs : refs/tags/afw-test-harness-1.5, refs/tags/afw-test-harness-2.1, refs/tags/android-1.0, ...
+Found 318 commit-pointing refs : HEAD, refs/heads/aosp_clang_dev_wip, refs/heads/vold, ...
+
+Protected commits
+-----------------
+
+These are your protected commits, and so their contents will NOT be altered:
+
+ * commit dfdfca3d (protected by 'HEAD')
+
+Cleaning
+--------
+
+Found 61547 commits
+Cleaning commits:       100% (61547/61547)
+Cleaning commits completed in 65,090 ms.
+
+Updating 288 Refs
+-----------------
+
+	Ref                                                         Before     After   
+	-------------------------------------------------------------------------------
+	refs/heads/aosp_clang_dev_wip                             | dfdfca3d | 668e1ac4
+	refs/heads/vold                                           | 6581b80a | 6724fe0a
+	refs/remotes/gerrit/android10-c2f2-release                | 2bc1ca1c | 8fbbd5d8
+	refs/remotes/gerrit/android10-c2f2-s1-release             | 2bc1ca1c | 8fbbd5d8
+	refs/remotes/gerrit/android10-c2f2-s2-release             | 2bc1ca1c | 8fbbd5d8
+	refs/remotes/gerrit/android10-dev                         | ac9e2af1 | 93a76cef
+	refs/remotes/gerrit/android10-gsi                         | 1f421455 | 1b10464e
+	refs/remotes/gerrit/android10-mainline-a-release          | 12ba9f74 | 3d1b6e17
+	refs/remotes/gerrit/android10-mainline-media-release      | b8b62ba9 | 5a893721
+	refs/remotes/gerrit/android10-mainline-networking-release | 4489cce3 | b455aa51
+	refs/remotes/gerrit/android10-mainline-release            | ddd75ba1 | 3d99b2f2
+	refs/remotes/gerrit/android10-mainline-resolv-release     | 89b541b0 | acd39601
+	refs/remotes/gerrit/android10-mainline-tzdata-release     | 9b8a586b | 0a975a28
+	refs/remotes/gerrit/android10-qpr1-b-release              | eaab99db | 4628664e
+	refs/remotes/gerrit/android10-qpr1-b-s1-release           | f0db8d04 | 6ee03a66
+	...
+
+Updating references:    100% (288/288)
+...Ref update completed in 1,054 ms.
+
+Commit Tree-Dirt History
+------------------------
+
+	Earliest                                              Latest
+	|                                                          |
+	.......................................DDDmmmmmmmmmmmmmmmmmm
+
+	D = dirty commits (file tree fixed)
+	m = modified commits (commit message or parents changed)
+	. = clean commits (no changes to file tree)
+
+	                        Before     After   
+	-------------------------------------------
+	First modified commit | 150db124 | ecbcdafc
+	Last dirty commit     | e242a97d | cd89e6b1
+
+Deleted files
+-------------
+
+	Filename     Git id             
+	--------------------------------
+	libartd.so | 70352dbb (219.1 MB)
+
+
+In total, 20351 object ids were changed. Full details are logged here:
+
+	/path/to/platform/system/core.bfg-report/2020-07-04/03-20-36
+
+BFG run is complete! When ready, run: git reflog expire --expire=now --all && git gc --prune=now --aggressive
+
+$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
+Counting objects: 179528, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (176397/176397), done.
+Writing objects: 100% (179528/179528), done.
+Total 179528 (delta 110910), reused 48496 (delta 0)
+Removing duplicate objects: 100% (256/256), done.
+Checking connectivity: 179528, done.
